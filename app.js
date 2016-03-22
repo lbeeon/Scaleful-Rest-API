@@ -4,9 +4,19 @@ var routes = require('./routes/public.js');
 var express = require("express");
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
+var logFile = fs.createWriteStream('./log.txt', {flag: 'a'});
+var env = require('./lib/env.js');
+
+var logger = require('./lib/logger.js').getInstance();
+logger.trace('[trace]....');
+logger.debug('[debug]....');
+logger.info('[info]....');
+logger.warn('[warn]....');
+logger.error('[error]....');
+logger.fatal('[fatal]....'); 
 
 
-
+console.log(new env().get_env());
 
 var path = "./routes";
 var module_list = fs.readdir(path, function(err, data){
@@ -26,7 +36,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // use morgan to log requests to the console
-app.use(morgan('dev'));
+app.use(morgan({stream:logFile}));
 
 
 app.listen(3000, function() {
