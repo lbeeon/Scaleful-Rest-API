@@ -2,6 +2,11 @@
 var fs = require('fs');
 var routes = require('./routes/public.js');
 var express = require("express");
+var bodyParser  = require('body-parser');
+var morgan      = require('morgan');
+
+
+
 
 var path = "./routes";
 var module_list = fs.readdir(path, function(err, data){
@@ -16,6 +21,13 @@ var module_list = fs.readdir(path, function(err, data){
 });
 
 var app = express();
+// use body parser so we can get info from POST and/or URL parameters
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// use morgan to log requests to the console
+app.use(morgan('dev'));
+
 
 app.listen(3000, function() {
   console.log('Magic on port: 3000');
