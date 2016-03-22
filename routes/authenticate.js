@@ -8,9 +8,7 @@ var _get = function(req, res){
 
 var router_list = [
     /*[method, path, middleware, callback]*/
-    ['get'  , '/auth'  ,   null,   _get],
-    ['post' , '/member'  ,   middleware,   _post]
-
+    ['get'  , '/auth'  ,   null,   _get]
 ]
 
 var routes = function(){
