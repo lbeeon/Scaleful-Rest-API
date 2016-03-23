@@ -3,12 +3,15 @@ var express = require("express");
 var jwt = require("jsonwebtoken");
 var config = require('./../config.js');
 var routes_base = require("./../lib/routes_base.js");
+var sleep = require("sleep");
 
 var _post = function(req, res){
     res.send("Hello Post");
 }
 
 var _get = function(req, res){
+    console.log('-------sleep---------');
+    sleep.sleep(0.1);
     res.send("Hello Get");
 }
 
