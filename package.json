@@ -23,6 +23,7 @@
     "jsonwebtoken": "^5.7.0",
     "log4js": "^0.6.33",
     "log4js-syslog-appender": "^0.2.1",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "sleep": "^3.0.1"
   }
 }
