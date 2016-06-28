@@ -39,7 +39,7 @@ if (cluster.isMaster) {
     //var port = 8000;
     console.log('worker (%s) is now listening to http://localhost:%s', cluster.worker.process.pid, port);
     var app = express();
-    var router_index = Array();
+    var router_index = [];
 
     var path = "./routes";
     var module_list = fs.readdir(path, function(err, data){
@@ -47,7 +47,7 @@ if (cluster.isMaster) {
             var appRouter = require(path + "/" + route_path);
             if (appRouter.is_routes){
                 app.use('/', appRouter.appRouter);
-                if (router_index.filter(function(n){  return appRouter.path_list.indexOf(n) > -1;}).length > 0){
+                if (router_index.some(function(n){  return appRouter.path_list.indexOf(n) > -1;})){
                     throw Error('Router path was registered!!');
                 }
                 router_index = router_index.concat(appRouter.path_list);
